@@ -4,6 +4,7 @@ import os
 import sys
 import requests
 import json
+from datetime import datetime
 
 sys.path.insert(0, os.path.abspath(".."))
 import CloudFlare
@@ -28,6 +29,24 @@ def my_ip_address():
         ip_address_type = "AAAA"
     else:
         ip_address_type = "A"
+
+    new_ip = f"{ip_address},{ip_address_type}"
+    old_ip = ""
+    try:
+        with open(os.path.join("ip_record"), "r") as fp:
+            old_ip = fp.read()
+    except:
+        print("No old IP have been recorded")
+
+    with open(os.path.join("ip_record"), "w+") as fp:
+        fp.write(new_ip)
+
+    if new_ip == old_ip:
+        print(f"IP not changed, will skip all task == {ip_address},{ip_address_type}")
+        print(
+            f"======================= end {datetime.now()} ===========================\n"
+        )
+        exit()
 
     return ip_address, ip_address_type
 
@@ -145,8 +164,9 @@ def main():
 
     print(cf, zone_name, zone_id, dns_name, ip_address, ip_address_type)
     do_dns_update(cf, zone_name, zone_id, dns_name, ip_address, ip_address_type)
-    exit(0)
 
 
 if __name__ == "__main__":
+    print(f"======================= start {datetime.now()} ===========================")
     main()
+    print(f"======================= end {datetime.now()} ===========================\n")

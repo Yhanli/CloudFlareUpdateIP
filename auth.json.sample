@@ -1,0 +1,4 @@
+{
+    "token": "your token key here and rename auth.json.sample to auth.json",
+    "site" : "yuhanli.tech - put your site name here"
+}

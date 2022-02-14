@@ -42,10 +42,8 @@ def my_ip_address():
         fp.write(new_ip)
 
     if new_ip == old_ip:
-        print(f"IP not changed, will skip all task == {ip_address},{ip_address_type}")
-        print(
-            f"======================= end {datetime.now()} ===========================\n"
-        )
+        print(f"IP not changed, {ip_address},{ip_address_type}")
+        print(f"end:{datetime.now()}\n")
         exit()
 
     return ip_address, ip_address_type
@@ -167,6 +165,6 @@ def main():
 
 
 if __name__ == "__main__":
-    print(f"======================= start {datetime.now()} ===========================")
+    print(f"start:{datetime.now()}")
     main()
-    print(f"======================= end {datetime.now()} ===========================\n")
+    print(f"end:{datetime.now()}\n")

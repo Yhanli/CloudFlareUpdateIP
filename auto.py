@@ -42,8 +42,8 @@ def my_ip_address():
         fp.write(new_ip)
 
     if new_ip == old_ip:
-        print(f"IP not changed, {ip_address},{ip_address_type}")
-        print(f"end:{datetime.now()}\n")
+        # print(f"IP not changed, {ip_address},{ip_address_type}")
+        # print(f"end:{datetime.now()}\n")
         exit()
 
     return ip_address, ip_address_type
@@ -51,7 +51,7 @@ def my_ip_address():
 
 def do_dns_update(cf, zone_name, zone_id, dns_name, ip_address, ip_address_type):
     """Cloudflare API code - example"""
-
+    print(f"start:{datetime.now()}")
     try:
         # params = {"name": dns_name, "match": "all", "type": ip_address_type}
         # dns_records = cf.zones.dns_records.get(zone_id, params=params)
@@ -118,6 +118,7 @@ def do_dns_update(cf, zone_name, zone_id, dns_name, ip_address, ip_address_type)
         #             % (dns_name, e, e)
         #         )
         #     print("CREATED: %s %s" % (dns_name, ip_address))
+    print(f"end:{datetime.now()}\n")
 
 
 def main():
@@ -165,6 +166,6 @@ def main():
 
 
 if __name__ == "__main__":
-    print(f"start:{datetime.now()}")
+    # print(f"start:{datetime.now()}")
     main()
-    print(f"end:{datetime.now()}\n")
+    # print(f"end:{datetime.now()}\n")

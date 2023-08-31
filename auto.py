@@ -66,6 +66,8 @@ def do_dns_update(cf, zone_name, zone_id, dns_name, ip_address, ip_address_type)
         old_ip_address = dns_record["content"]
         old_ip_address_type = dns_record["type"]
         og_dns_name = dns_record["name"]
+        if "china-home" not in og_dns_name:
+            continue
         if ip_address_type not in ["A", "AAAA"]:
             # we only deal with A / AAAA records
             continue
